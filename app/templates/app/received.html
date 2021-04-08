@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <title>received page</title>
+  <style>
+    table,
+    td,
+    th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+  <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+</head>
+
+<body class="container">
+  <div class="row mt-5">
+    <h1>دریافتی</h1>
+  </div>
+  <form action="{% url 'received' %}" method="GET" value="{{request.GET.q}}">
+    <div class="form-group row mt-3">
+      <input type="text" id="q" name="q" value="{{request.GET.q}}" placeholder="جستجو..." class="form-control col-sm-8 ml-3" />
+      <input type="submit" name="submit" value="search" class="col-sm-3 btn btn-primary" />
+    </div>
+  </form>
+  <div class="row">
+    {% if submitbutton == 'search' and request.GET.q != '' %}
+    {% if results %}
+    <h1>نتایج برای
+      <b>{{ request.GET.q }}</b>
+    </h1>
+    <br /><br />
+    <table style="width:100%" class="table table-hover">
+      <tr>
+        <th>دریافت از رده</th>
+        <th>Brand Device</th>
+        <th>Model Device</th>
+        <th>FW.Version</th>
+        <th>sn/بیت المال</th>
+	<th>fireWall</th>
+	<th>تعداد پورت فیبر</th>
+	<th>تعداد پورت اترنت</th>
+	<th>Device Bog</th>
+	<th>تحویل دهنده</th>
+	<th>تحویل گیرنده</th>
+	<th>تاریخ دریافت</th>
+	<th>تاریخ ارسال به شرکت</th>
+	<th>شرکت فناور</th>
+	<th>ردیف تحویلی</th>
+	<th>وضعیت</th>
+      </tr>
+      {% for result in results %}
+      <tr>
+        <th>{{result.fireWall.vendor}}</th>
+        <th>{{result.fireWall.brand}}</th>
+        <th>{{result.fireWall.model}}</th>
+        <th>{{result.fireWall.version}}</th>
+        <th>{{result.fireWall.sn}}</th>
+	<th>{{result.fireWall}}</th>
+	<th>{{result.fibr_port_num}}</th>
+	<th>{{result.eth_port_num}}</th>
+	<th>{{result.device_bog}}</th>
+	<th>{{result.devilery_person_name}}</th>
+	<th>{{result.received_person_name}}</th>
+	<th>{{result.received_date}}</th>
+	<th>{{result.send_to_company_date}}</th>
+	<th>{{result.company}}</th>
+	<th>{{result.delivery_row}}</th>
+	<th>{{result.status}}</th>
+      </tr>
+      {% endfor %}
+    </table>
+
+    {% else %}
+    نتیجه ای یافت نشد
+    {% endif %}
+    {% endif %}
+  </div>
+
+  <div class="row">
+    <a class="btn btn-success" href="{% url 'home' %}">home</a>
+  </div>
+
+</body>
+
+</html>

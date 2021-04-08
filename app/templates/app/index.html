@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>home page</title>
+
+    {% load static %}
+   <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}" >
+   <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+
+  </head>
+  <body class="container">
+
+    <nav class="navbar navbar-dark bg-dark">
+
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'available' %}">موجودی</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'delivery' %}">تحویلی</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'received' %}">دریافتی</a>
+          </li>
+        </ul>
+	  <div class="row">
+    		<a class="btn btn-success" href="/admin/">admin</a>
+  	</div>
+</nav>
+
+  </body>
+</html>
