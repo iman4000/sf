@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <title>available page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light d-print-none">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse px-2" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{% url 'home' %}">خانه</a>
+                <a class="nav-item nav-link" href="{% url 'available' %}">موجودی</a>
+                <a class="nav-item nav-link" href="{% url 'received' %}">تحویلی</a>
+                <a class="nav-item nav-link" href="{% url 'delivery' %}">دریافتی</a>
+            </div>
+        </div>
+        <div class="form-inline">
+            <a class="btn btn-success mx-2" href="{% url 'admin:index' %}">admin</a>
+            <a class="btn btn-secondary mx-2" href="{% url 'accounts_logout' %}">logout</a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="d-print-none">
+            <div class="row mt-5">
+                <h1>موجودی</h1>
+            </div>
+            <form action="{% url 'available' %}" method="GET">
+                <div class="form-group row mt-3">
+                    <input type="text" value="{{filter}}" name="filter" placeholder="جستجو..."
+                        class="form-control col-sm-8 ml-3" />
+                    <button type="submit" class="col-sm-3 btn btn-primary">search</button>
+                </div>
+            </form>
+        </div>
+        <div class="row pt-3">
+            <table class="table table-hover table-bordered" style="direction: ltr;">
+                <thead class="thead-light text-center">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">vendor</th>
+                        <th scope="col">brand</th>
+                        <th scope="col">model</th>
+                        <th scope="col">version</th>
+                        <th scope="col">sn</th>
+                        <th scope="col">action</th>
+                        <th scope="col">replace</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in object_list %}
+                    <tr>
+                        <th scope="row" class="text-center">{{obj.id}}</th>
+                        <td>{{obj.fireWall.vendor}}</td>
+                        <td>{{obj.fireWall.brand}}</td>
+                        <td>{{obj.fireWall.model}}</td>
+                        <td>{{obj.fireWall.version}}</td>
+                        <td>{{obj.fireWall.sn}}</td>
+                        <td>{{obj.action}}</td>
+                        <td>{{obj.replace}}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <th colspan="8">No obj yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

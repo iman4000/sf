@@ -11,15 +11,16 @@ class FireWall(models.Model):
     def __str__(self):
          return '%s (%s)' % (self.brand,self.model)
 
-class Available (models.Model):
+class Available(models.Model):
     action = models.CharField(max_length=300)
     replace = models.CharField(max_length=300)
     fireWall = models.ForeignKey('FireWall',on_delete=models.CASCADE,null=True,blank=True)
+    created_date = models.DateTimeField(auto_now_add = True)
 
     # def __str__(self):
     #     return '%s (%s)' % (self.fireWall.brand,self.fireWall.model)
 
-class Received (models.Model):
+class Received(models.Model):
     received_from_category = models.CharField(max_length=300)
     fireWall = models.ForeignKey('FireWall',on_delete=models.CASCADE,null=True,blank=True)
     fibr_port_num = models.CharField(max_length=300, default='SOME STRING')
@@ -27,12 +28,13 @@ class Received (models.Model):
     device_bog = models.ForeignKey('Device',on_delete=models.CASCADE,null=True,blank=True)
     devilery_person_name = models.ForeignKey('DeliveryPerson',on_delete=models.CASCADE,null=True,blank=True)
     received_person_name = models.ForeignKey('RecievedPerson',on_delete=models.CASCADE,null=True,blank=True)
-    received_date = models.DateTimeField(auto_now_add=True, blank=True)
+    received_date = models.DateTimeField(auto_now_add = True, blank=True)
     send_to_company_date = models.DateTimeField(auto_now_add=True, blank=True)
     company = models.CharField(max_length=300, default='SOME STRING')
     delivery_row = models.CharField(max_length=300, default='SOME STRING')
     status = models.ForeignKey('Status',on_delete=models.CASCADE,null=True,blank=True)
     description = models.CharField(max_length=1000, default='SOME STRING')
+    created_date = models.DateTimeField(auto_now_add = True)
     def __str__(self):
         return self.received_from_category
 
@@ -66,7 +68,7 @@ class RecievedPerson(models.Model):
 
 
 
-class Delivery (models.Model):
+class Delivery(models.Model):
 
     fireWall = models.ForeignKey('FireWall',on_delete=models.CASCADE,null=True,blank=True)
     action = models.CharField(max_length=300)
@@ -76,6 +78,7 @@ class Delivery (models.Model):
     delivery_to_category = models.CharField(max_length=300)
     status = models.ForeignKey('Status',on_delete=models.CASCADE,null=True,blank=True)
     description = models.CharField(max_length=1000, default='SOME STRING')
+    created_date = models.DateTimeField(auto_now_add = True)
 
     def __str__(self):
         return self.delivery_to_category

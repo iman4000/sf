@@ -17,15 +17,19 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from app import views
+from django.views.generic import TemplateView
+
+from app.views import AvailableListView, ReceivedListView, DeliveryListView
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/',views.index, name='home'),
-    path('Available/',views.available, name='available'),
-    path('Delivery/',views.delivery, name='delivery'),
-    path('Received/',views.received, name='received'),
+    path('home/', TemplateView.as_view(template_name="app/index.html"), name='home'),
+    path('available/', AvailableListView.as_view(), name="available"),
+    path('delivery/', DeliveryListView.as_view(), name="delivery"),
+    path('received/', ReceivedListView.as_view(), name="received"),
     #re_path(r'^(?P<pk>[0-9]+)/details/$', views.details)
-    re_path(r'^$', views.index, name='home'),
+    re_path(r'^$', TemplateView.as_view(template_name="app/index.html"), name='home'),
     re_path(r'^accounts/', include('accounts.urls')),
 ]
 
