@@ -4,13 +4,15 @@ from . import models
 from django.views import generic
 from rest_framework import generics, serializers, filters
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
 
+@login_required
 def index(request):
     return render(request, 'app/index.html')
 
-
+@login_required
 def available(request):
 
     if request.method == 'GET':
@@ -30,7 +32,7 @@ def available(request):
     else:
         return render(request, 'app/available.html')
 
-
+@login_required
 def received(request):
 
     if request.method == 'GET':
@@ -52,6 +54,7 @@ def received(request):
     else:
         return render(request, 'app/received.html')
 
+@login_required
 def delivery(request):
 
     if request.method == 'GET':

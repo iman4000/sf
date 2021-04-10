@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
+        <title>{% block title %}Login{% endblock %}</title>
+    </head>
+    <body >
+        {% if request.get_full_path == "/accounts/login" %}
+        {% elif request.get_full_path == "/accounts/login/" %}
+        {% else %}
+        {% endif %}
+        <main role="main">
+            {% block content %} {% endblock %}
+        </main>
+    </body>
+</html>
+    <div class="container">
+        
+        <div class="row text-center col-12 mt-5">
+
+                <!-- form card login -->
+                    {% include 'accounts/_alerts.html' %}
+                    <div class="card rounded-10 col-xs-12 col-sm-12 col-md-10 col-lg-6 p-0 mx-auto b-color " id="login-form">
+                        <div class="card-header">
+                            <h3 class="mb-0 login-text t-color">User Login</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
+                                {% csrf_token %}
+                                
+                                <img class="img-jello img-fluid mx-auto mt-4 mb-5"  width="200" height="200">
+                                <div class="input-group mb-3 floatContainer">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Username</span>
+                                    </div>
+                                    <input type="text" class="form-control form-control-lg rounded-2 col-11 mx-auto " aria-label="Username" aria-describedby="basic-addon1" id="id_username" name="username" required>
+                                </div>
+                                <div class="input-group mb-3 floatContainer">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1">Password</span>
+                                    </div>
+                                    <input type="password" class="form-control form-control-lg rounded-2 col-11 mx-auto" aria-label="password" aria-describedby="basic-addon1" id="id_password" name="password" required>
+                                </div>
+                                
+                            
+                                <div class="col-12 ">
+                                <a href="javascript:void('forgot-form-link');" class="forgot-form-link float-left ">Forgot Password</a>
+                                <button type="submit" class="btn btn-lg float-right btn-outline-primary"> Login </button>
+                                </div>
+                                </form>
+                        </div>
+                    </div>
+                <!-- /form card login end-->
+            </div>
+        </div>
+    </div>

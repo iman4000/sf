@@ -10,7 +10,7 @@
 
   </head>
   <body class="container">
-
+    {% include 'accounts/_alerts.html' %}
     <nav class="navbar navbar-dark bg-dark">
 
       <ul class="navbar-nav mr-auto">
@@ -26,6 +26,7 @@
         </ul>
 	  <div class="row">
     		<a class="btn btn-success" href="/admin/">admin</a>
+        <a class="btn btn-secondary" href="/accounts/logout">logout</a>
   	</div>
 </nav>
 
