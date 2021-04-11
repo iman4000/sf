@@ -19,17 +19,17 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
-from app.views import AvailableListView, ReceivedListView, DeliveryListView
+from app.views import AvailableListView, ReceivedListView, DeliveryListView, IndexView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', TemplateView.as_view(template_name="app/index.html"), name='home'),
+    path('home/', IndexView.as_view(), name='home'),
     path('available/', AvailableListView.as_view(), name="available"),
     path('delivery/', DeliveryListView.as_view(), name="delivery"),
     path('received/', ReceivedListView.as_view(), name="received"),
     #re_path(r'^(?P<pk>[0-9]+)/details/$', views.details)
-    re_path(r'^$', TemplateView.as_view(template_name="app/index.html"), name='home'),
+    re_path(r'^$', IndexView.as_view(), name='home'),
     re_path(r'^accounts/', include('accounts.urls')),
 ]
 
