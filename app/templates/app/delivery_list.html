@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>available page</title>
+    <title>delivery page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
-    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 </head>
 
 <body>
@@ -32,7 +31,7 @@
     <div class="container">
         <div class="d-print-none">
             <div class="row mt-5">
-                <h1>موجودی</h1>
+                <h1>تحویلی</h1>
             </div>
             <form action="{% url 'available' %}" method="GET">
                 <div class="form-group row mt-3">
@@ -42,7 +41,7 @@
                 </div>
             </form>
         </div>
-        <div class="row pt-3">
+        <div class="row pt-3 table-responsive">
             <table class="table table-hover table-bordered" style="direction: ltr;">
                 <thead class="thead-light text-center">
                     <tr>
@@ -53,7 +52,12 @@
                         <th scope="col">version</th>
                         <th scope="col">sn</th>
                         <th scope="col">action</th>
-                        <th scope="col">replace</th>
+                        <th scope="col">date</th>
+                        <th scope="col">name_phone</th>
+                        <th scope="col">delivery_to_category_date</th>
+                        <th scope="col">delivery_to_category</th>
+                        <th scope="col">status</th>
+                        <th scope="col">description</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,11 +70,16 @@
                         <td>{{obj.fireWall.version}}</td>
                         <td>{{obj.fireWall.sn}}</td>
                         <td>{{obj.action}}</td>
-                        <td>{{obj.replace}}</td>
+                        <td>{{obj.date}}</td>
+                        <td>{{obj.name_phone}}</td>
+                        <td>{{obj.delivery_to_category_date}}</td>
+                        <td>{{obj.delivery_to_category}}</td>
+                        <td>{{obj.status}}</td>
+                        <td>{{obj.description}}</td>
                     </tr>
                     {% empty %}
                     <tr>
-                        <th colspan="8">No obj yet.</td>
+                        <th colspan="12">No obj yet.</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -80,4 +89,6 @@
 
 </body>
 
+<script src="{% static 'app/js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 </html>

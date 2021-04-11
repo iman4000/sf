@@ -15,7 +15,7 @@ class Available(models.Model):
     action = models.CharField(max_length=300)
     replace = models.CharField(max_length=300)
     fireWall = models.ForeignKey('FireWall',on_delete=models.CASCADE,null=True,blank=True)
-    created_date = models.DateTimeField(auto_now_add = True)
+    created_date = models.DateTimeField(auto_now_add = True, editable = False)
 
     # def __str__(self):
     #     return '%s (%s)' % (self.fireWall.brand,self.fireWall.model)
@@ -34,7 +34,7 @@ class Received(models.Model):
     delivery_row = models.CharField(max_length=300, default='SOME STRING')
     status = models.ForeignKey('Status',on_delete=models.CASCADE,null=True,blank=True)
     description = models.CharField(max_length=1000, default='SOME STRING')
-    created_date = models.DateTimeField(auto_now_add = True)
+    created_date = models.DateTimeField(auto_now_add = True, editable = False)
     def __str__(self):
         return self.received_from_category
 
@@ -78,7 +78,7 @@ class Delivery(models.Model):
     delivery_to_category = models.CharField(max_length=300)
     status = models.ForeignKey('Status',on_delete=models.CASCADE,null=True,blank=True)
     description = models.CharField(max_length=1000, default='SOME STRING')
-    created_date = models.DateTimeField(auto_now_add = True)
+    created_date = models.DateTimeField(auto_now_add = True, editable = False)
 
     def __str__(self):
         return self.delivery_to_category

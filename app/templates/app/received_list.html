@@ -6,7 +6,6 @@
     <title>available page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
-    <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 </head>
 
 <body>
@@ -42,7 +41,7 @@
                 </div>
             </form>
         </div>
-        <div class="row pt-3">
+        <div class="row pt-3 table-responsive">
             <table class="table table-hover table-bordered" style="direction: ltr;">
                 <thead class="thead-light text-center">
                     <tr>
@@ -52,8 +51,17 @@
                         <th scope="col">model</th>
                         <th scope="col">version</th>
                         <th scope="col">sn</th>
-                        <th scope="col">action</th>
-                        <th scope="col">replace</th>
+                        <th scope="col">fireWall</th>
+                        <th scope="col">fibr_port_num</th>
+                        <th scope="col">eth_port_num</th>
+                        <th scope="col">device_bog</th>
+                        <th scope="col">devilery_person_name</th>
+                        <th scope="col">received_person_name</th>
+                        <th scope="col">received_date</th>
+                        <th scope="col">send_to_company_date</th>
+                        <th scope="col">company</th>
+                        <th scope="col">delivery_row</th>
+                        <th scope="col">status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,12 +73,21 @@
                         <td>{{obj.fireWall.model}}</td>
                         <td>{{obj.fireWall.version}}</td>
                         <td>{{obj.fireWall.sn}}</td>
-                        <td>{{obj.action}}</td>
-                        <td>{{obj.replace}}</td>
+                        <td>{{obj.fireWall}}</td>
+                        <td>{{obj.fibr_port_num}}</td>
+                        <td>{{obj.eth_port_num}}</td>
+                        <td>{{obj.device_bog}}</td>
+                        <td>{{obj.devilery_person_name}}</td>
+                        <td>{{obj.received_person_name}}</td>
+                        <td>{{obj.received_date}}</td>
+                        <td>{{obj.send_to_company_date}}</td>
+                        <td>{{obj.company}}</td>
+                        <td>{{obj.delivery_row}}</td>
+                        <td>{{obj.status}}</td>
                     </tr>
                     {% empty %}
                     <tr>
-                        <th colspan="8">No obj yet.</td>
+                        <th colspan="16">No obj yet.</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -80,4 +97,6 @@
 
 </body>
 
+<script src="{% static 'app/js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 </html>

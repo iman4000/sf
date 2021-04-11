@@ -6,7 +6,6 @@
   <title>available page</title>
   {% load static %}
   <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
-  <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 </head>
 
 <body>
@@ -42,7 +41,7 @@
         </div>
       </form>
     </div>
-    <div class="row pt-3">
+    <div class="row pt-3 table-responsive">
       <table class="table table-hover table-bordered" style="direction: ltr;">
         <thead class="thead-light text-center">
           <tr>
@@ -80,4 +79,6 @@
 
 </body>
 
+<script src="{% static 'app/js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'app/js/bootstrap.min.js' %}"></script>
 </html>
