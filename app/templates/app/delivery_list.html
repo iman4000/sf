@@ -31,7 +31,7 @@
     <div class="container">
         <div class="d-print-none">
             <div class="row mt-5">
-                <h1>تحویلی</h1>
+                <h1>دریافتی</h1>
             </div>
             <form action="{% url 'available' %}" method="GET">
                 <div class="form-group row mt-3">
@@ -42,22 +42,22 @@
             </form>
         </div>
         <div class="row pt-3 table-responsive">
-            <table class="table table-hover table-bordered" style="direction: ltr;">
+            <table class="table table-hover table-bordered" style="direction: rtl;">
                 <thead class="thead-light text-center">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">vendor</th>
-                        <th scope="col">brand</th>
-                        <th scope="col">model</th>
-                        <th scope="col">version</th>
-                        <th scope="col">sn</th>
-                        <th scope="col">action</th>
-                        <th scope="col">date</th>
-                        <th scope="col">name_phone</th>
-                        <th scope="col">delivery_to_category_date</th>
-                        <th scope="col">delivery_to_category</th>
-                        <th scope="col">status</th>
-                        <th scope="col">description</th>
+                        <th scope="col">شرکت فناور</th>
+                        <th scope="col">Brand Device</th>
+                        <th scope="col">Model Device</th>
+                        <th scope="col">FW.Version</th>
+                        <th scope="col">sn/بیت المال</th>
+                        <th scope="col">نوع اقدام</th>
+                        <th scope="col">تاریخ دریافت</th>
+                        <th scope="col">تحویل دهنده</th>
+                        <th scope="col">تاریخ تحویل به رده</th>
+                        <th scope="col">تحویل گیرنده</th>
+                        <th scope="col">وضعیت</th>
+                        <th scope="col">توضیحات</th>
                     </tr>
                 </thead>
                 <tbody>

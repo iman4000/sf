@@ -44,7 +44,7 @@ class ReceivedListView(LoginRequiredMixin, ListView):
     
     model = Received
     paginate_by = 100
-    template_name = 'app/delivery_list.html'
+    template_name = 'app/received_list.html'
 
     def get_queryset(self):
         filter_val = self.request.GET.get('filter', '')
@@ -60,11 +60,11 @@ class ReceivedListView(LoginRequiredMixin, ListView):
         context['filter'] = self.request.GET.get('filter', '')
         for obj in context['object_list']:
             try:
-                obj.delivery_to_category_date = JalaliDateTime(obj.delivery_to_category_date).strftime("%c")
+                obj.send_to_company_date = JalaliDateTime(obj.send_to_company_date).strftime("%c")
             except:
                 pass
             try:
-                obj.date = JalaliDateTime(obj.date).strftime("%c")
+                obj.received_date = JalaliDateTime(obj.received_date).strftime("%c")
             except:
                 pass
         return context
@@ -74,7 +74,7 @@ class DeliveryListView(LoginRequiredMixin, ListView):
     
     model = Delivery
     paginate_by = 100
-    template_name = 'app/received_list.html'
+    template_name = 'app/delivery_list.html'
 
     def get_queryset(self):
         filter_val = self.request.GET.get('filter', '')
@@ -89,11 +89,11 @@ class DeliveryListView(LoginRequiredMixin, ListView):
         context['filter'] = self.request.GET.get('filter', '')
         for obj in context['object_list']:
             try:
-                obj.send_to_company_date = JalaliDateTime(obj.send_to_company_date).strftime("%c")
+                obj.delivery_to_category_date = JalaliDateTime(obj.delivery_to_category_date).strftime("%c")
             except:
                 pass
             try:
-                obj.received_date = JalaliDateTime(obj.received_date).strftime("%c")
+                obj.date = JalaliDateTime(obj.date).strftime("%c")
             except:
                 pass
         return context

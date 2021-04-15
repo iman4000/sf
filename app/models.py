@@ -17,8 +17,8 @@ class Available(models.Model):
     fireWall = models.ForeignKey('FireWall',on_delete=models.CASCADE,null=True,blank=True)
     created_date = models.DateTimeField(auto_now_add = True, editable = False)
 
-    # def __str__(self):
-    #     return '%s (%s)' % (self.fireWall.brand,self.fireWall.model)
+    def __str__(self):
+         return '%s (%s)' % (self.fireWall.brand,self.fireWall.model)
 
 class Received(models.Model):
     received_from_category = models.CharField(max_length=300)
