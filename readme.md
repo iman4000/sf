@@ -13,5 +13,12 @@ This project is for managing firewalls
 
 ## TODO list
 
-- [ ] nothing for now
-- [X] nothing for now
+- [ ] make all date fields editable in admin exclude create_date
+- [ ] make tables sortable by every field ()
+- [ ] remove all default='SOME STRING' from models
+- [ ] change tables to boostrap table for sorting
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
