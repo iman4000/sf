@@ -15,7 +15,7 @@ This project is for managing firewalls
 
 - [ ] make all date fields editable in admin exclude create_date
 - [ ] make tables sortable by every field ()
-- [ ] remove all default='SOME STRING' from models
+- [X] remove all default='SOME STRING' from models
 - [ ] change tables to boostrap table for sorting
 - [ ] 
 - [ ] 

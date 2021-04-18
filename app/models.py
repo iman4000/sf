@@ -24,17 +24,17 @@ class Available(models.Model):
 class Received(models.Model):
     received_from_category = models.CharField(max_length=300)
     fireWall = models.ForeignKey('FireWall',on_delete=models.CASCADE,null=True,blank=True)
-    fibr_port_num = models.CharField(max_length=300, default='SOME STRING')
-    eth_port_num = models.CharField(max_length=300, default='SOME STRING')
-    device_bog = models.ForeignKey('Device',on_delete=models.CASCADE,null=True,blank=True)
-    devilery_person_name = models.ForeignKey('DeliveryPerson',on_delete=models.CASCADE,null=True,blank=True)
-    received_person_name = models.ForeignKey('RecievedPerson',on_delete=models.CASCADE,null=True,blank=True)
-    received_date = models.DateTimeField(auto_now_add = True, blank=True)
-    send_to_company_date = models.DateTimeField(auto_now_add=True, blank=True)
-    company = models.CharField(max_length=300, default='SOME STRING')
-    delivery_row = models.CharField(max_length=300, default='SOME STRING')
+    fibr_port_num = models.CharField(max_length=300)
+    eth_port_num = models.CharField(max_length=300)
+    device_bog = models.ForeignKey('Device', on_delete=models.CASCADE, null=True, blank=True)
+    devilery_person_name = models.ForeignKey('DeliveryPerson', on_delete=models.CASCADE, null=True, blank=True)
+    received_person_name = models.ForeignKey('RecievedPerson', on_delete=models.CASCADE, null=True, blank=True)
+    received_date = models.DateTimeField(null=True, blank=True)
+    send_to_company_date = models.DateTimeField(null=True, blank=True)
+    company = models.CharField(max_length=300)
+    delivery_row = models.CharField(max_length=300)
     status = models.ForeignKey('Status',on_delete=models.CASCADE,null=True,blank=True)
-    description = models.CharField(max_length=1000, default='SOME STRING')
+    description = models.CharField(max_length=1000)
     created_date = models.DateTimeField(auto_now_add = True, editable = False)
     def __str__(self):
         return self.received_from_category
@@ -85,12 +85,12 @@ class Delivery(models.Model):
 
     fireWall = models.ForeignKey('FireWall',on_delete=models.CASCADE,null=True,blank=True)
     action = models.CharField(max_length=300)
-    date = models.DateTimeField(auto_now_add=True, blank=True)
+    date = models.DateTimeField(null=True, blank=True)
     name_phone = models.ForeignKey('DeliveryPerson',on_delete=models.CASCADE,null=True,blank=True)
-    delivery_to_category_date = models.DateTimeField(auto_now_add=True, blank=True)
+    delivery_to_category_date = models.DateTimeField(null=True, blank=True)
     delivery_to_category = models.CharField(max_length=300)
     status = models.ForeignKey('Status',on_delete=models.CASCADE,null=True,blank=True)
-    description = models.CharField(max_length=1000, default='SOME STRING')
+    description = models.CharField(max_length=1000)
     created_date = models.DateTimeField(auto_now_add = True, editable = False)
 
     def __str__(self):
