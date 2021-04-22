@@ -1,6 +1,9 @@
 from django.contrib import admin
 from . import models
 
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
+    pass
 
 @admin.register(models.FireWall)
 class FireWallAdmin(admin.ModelAdmin):
@@ -10,19 +13,21 @@ class FireWallAdmin(admin.ModelAdmin):
 class AvailableAdmin(admin.ModelAdmin):
     pass
 
-
-@admin.register(models.Delivery)
-class DeliveryAdmin(admin.ModelAdmin):
+@admin.register(models.DeliveryToCategory)
+class DeliveryToCategoryAdmin(admin.ModelAdmin):
     pass
-    # list_display = ('model','brand')
 
-
-@admin.register(models.Received)
-class ReceivedAdmin(admin.ModelAdmin):
+@admin.register(models.DeliveryToCompany)
+class DeliveryToCompanyAdmin(admin.ModelAdmin):
     pass
-    # list_display = ('model','brand')
-    # list_filter = ('model','brand')
-    # fields = [('model','brand')]
+
+@admin.register(models.ReceivedFromCategory)
+class ReceivedFromCategoryAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(models.ReceivedFromCompany)
+class ReceivedFromCompany(admin.ModelAdmin):
+    pass
 
 @admin.register(models.Status)
 class StatusAdmin(admin.ModelAdmin):
