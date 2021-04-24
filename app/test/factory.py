@@ -1,6 +1,6 @@
 import factory
 import factory.fuzzy
-import datetime
+from datetime import datetime, timezone
 from ..models import *
 
 class CategoryFactory(factory.django.DjangoModelFactory):
@@ -38,8 +38,8 @@ class ReceivedFactory(factory.django.DjangoModelFactory):
     device_bog = factory.Iterator(Device.objects.all())
     devilery_person_name = factory.Iterator(DeliveryPerson.objects.all())
     received_person_name = factory.Iterator(RecievedPerson.objects.all())
-    received_date = factory.fuzzy.FuzzyDateTime(datetime.datetime.now(datetime.timezone.utc))
-    send_to_company_date = factory.fuzzy.FuzzyDateTime(datetime.datetime.now(datetime.timezone.utc))
+    received_date = factory.fuzzy.FuzzyDateTime(datetime(2015, 01, 01) ,datetime.now(timezone.utc))
+    send_to_company_date = factory.fuzzy.FuzzyDateTime(datetime(2015, 01, 01) ,datetime.now(timezone.utc))
     company = factory.fuzzy.FuzzyText()
     status = factory.Iterator(Status.objects.all())
     description = factory.fuzzy.FuzzyText()
@@ -80,9 +80,9 @@ class RecievedPersonFactory(factory.django.DjangoModelFactory):
 class DeliveryFactory(factory.django.DjangoModelFactory):
     fireWall = factory.Iterator(FireWall.objects.all())
     action = factory.fuzzy.FuzzyText()
-    date = factory.fuzzy.FuzzyDateTime(datetime.datetime.now(datetime.timezone.utc))
+    date = factory.fuzzy.FuzzyDateTime(datetime(2015, 01, 01) ,datetime.now(timezone.utc))
     name_phone = factory.Iterator(DeliveryPerson.objects.all())
-    delivery_to_category_date = factory.fuzzy.FuzzyDateTime(datetime.datetime.now(datetime.timezone.utc))
+    delivery_to_category_date = factory.fuzzy.FuzzyDateTime(datetime(2015, 01, 01) ,datetime.now(timezone.utc))
     category = factory.Iterator(Category.objects.all())
     status = factory.Iterator(Status.objects.all())
     description = factory.fuzzy.FuzzyText()
