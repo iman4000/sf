@@ -108,9 +108,9 @@ class Delivery(models.Model):
         return self.category.category
 
 
-class DeliveryFromCompany(Delivery):
+class DeliveryToCompany(Delivery):
     pass
 
 
-class DeliveryFromCategory(Delivery):
+class DeliveryToCategory(Delivery):
     pass

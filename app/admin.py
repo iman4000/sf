@@ -13,12 +13,12 @@ class FireWallAdmin(admin.ModelAdmin):
 class AvailableAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(models.DeliveryFromCategory)
-class DeliveryFromCategoryAdmin(admin.ModelAdmin):
+@admin.register(models.DeliveryToCategory)
+class DeliveryToCategoryAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(models.DeliveryFromCompany)
-class DeliveryFromCompanyAdmin(admin.ModelAdmin):
+@admin.register(models.DeliveryToCompany)
+class DeliveryToCompanyAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(models.ReceivedFromCategory)
