@@ -13,7 +13,7 @@ This project is for managing firewalls
 
 ## TODO list
 
-1. [ ] export
+1. [X] export
 2. [X] navare keshoii baraye category
 3. [X] remove all default='SOME STRING' from models
 4. [X] remove delivery row from recived 
@@ -21,7 +21,7 @@ This project is for managing firewalls
 6. [X] add phone number to delivery person
 7. [X] change date times auto to manual 
 8. [X] same as 7
-9. [ ] search on 4 models
-10. [ ] sort on frontend js
+9. [X] search on 5 models
+10. [X] sort on frontend js
 11. [X] change "reciverd" to "recived from company" and "recived from category", "delivery" to "delivery from company" and "delivery from category"
 12. [X] factory

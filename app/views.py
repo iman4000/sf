@@ -23,20 +23,36 @@ class IndexView(TemplateView):
 class SearchView(LoginRequiredMixin, TemplateView):
 
     def get(self, request):
-        filter = request.GET.get('filter', '')
-        if filter == '':
-            available = Available.objects.all()
-            delivery_to_company = DeliveryToCompany.objects.all()
-            delivery_to_category = DeliveryToCategory.objects.all()
-            received_to_company = ReceivedFromCompany.objects.all()
-            received_to_category = ReceivedFromCategory.objects.all()
-        else:
-            pass
+        available = Available.objects.all().order_by('-created_date')
+        delivery_to_company = DeliveryToCompany.objects.all().order_by('-created_date')
+        delivery_to_category = DeliveryToCategory.objects.all().order_by('-created_date')
+        received_from_company = ReceivedFromCompany.objects.all().order_by('-created_date')
+        received_from_category = ReceivedFromCategory.objects.all().order_by('-created_date')
+        res = []
+        for obj in available:
+            obj.type_ = "A"
+            res.append(obj)
+        for obj in delivery_to_company:
+            obj.type_ = "DTCo"
+            obj.delivery_to_category_date = JalaliDateTime(obj.delivery_to_category_date).strftime("%Y-%m-%d %H-%M")
+            obj.date = JalaliDateTime(obj.date).strftime("%Y-%m-%d %H-%M")
+            res.append(obj)
+        for obj in delivery_to_category:
+            obj.type_ = "DTCa"
+            obj.delivery_to_category_date = JalaliDateTime(obj.delivery_to_category_date).strftime("%Y-%m-%d %H-%M")
+            obj.date = JalaliDateTime(obj.date).strftime("%Y-%m-%d %H-%M")
+            res.append(obj)
+        for obj in received_from_company:
+            obj.type_ = "RFCo"
+            obj.received_date = JalaliDateTime(obj.received_date).strftime("%Y-%m-%d %H-%M")
+            obj.send_to_company_date = JalaliDateTime(obj.send_to_company_date).strftime("%Y-%m-%d %H-%M")
+            res.append(obj)
+        for obj in received_from_category:
+            obj.type_ = "RFCa"
+            obj.received_date = JalaliDateTime(obj.received_date).strftime("%Y-%m-%d %H-%M")
+            obj.send_to_company_date = JalaliDateTime(obj.send_to_company_date).strftime("%Y-%m-%d %H-%M")
+            res.append(obj)
         data = {
-            available: available,
-            delivery_to_company: delivery_to_company, 
-            delivery_to_category: delivery_to_category, 
-            received_to_company: received_to_company, 
-            received_to_category: received_to_category
+            'res': res,
             }
-        return render(request, 'app/search.html', context = data)
+        return render(request, 'app/search.html', data)
