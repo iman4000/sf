@@ -28,91 +28,68 @@
             <a class="btn btn-secondary mx-2" href="{% url 'accounts_logout' %}">logout</a>
         </div>
     </nav>
-    <div class="container">
-        <div class="row">
+    <div class="container table-responsive mt-5" style="direction: ltr;">
             <table 
             id="table"
-            data-toolbar="#toolbar"
             data-search="true"
             data-show-fullscreen="true"
             data-show-columns="true"
+            data-show-columns-search="true"
             data-show-columns-toggle-all="true"
             data-show-export="true"
+            data-toggle="table"
+            data-export-data-type="all"
             data-pagination="true"
-            data-id-field="id"
+            data-export-types="['json', 'csv', 'txt', 'excel']"
             data-page-list="[10, 25, 50, 100, all]"
             >
-                <thead>
-                  <tr>
-                    <th>id</th>
-                    <th>Item Name</th>
-                    <th>Item Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Item 1</td>
-                    <td>$1</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Item 2</td>
-                    <td>$2</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-        <div class="row pt-3 table-responsive">
-            <table class="table table-hover table-bordered" style="direction: rtl;">
                 <thead class="thead-light text-center">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">دریافت از رده</th>
-			            <th scope="col">Brand Device</th>
-                        <th scope="col">Model Device</th>
-                        <th scope="col">FW.Version</th>
-                        <th scope="col">sn/بیت المال</th>
-                        <th scope="col">تعداد پورت فیبر</th>
-                        <th scope="col">تعداد پورت اترنت</th>
-                        <th scope="col">Device Bog</th>
-                        <th scope="col">تحویل دهنده</th>
-                        <th scope="col">تحویل گیرنده</th>
-                        <th scope="col">تاریخ دریافت</th>
-                        <th scope="col">تاریخ ارسال به شرکت</th>
-                        <th scope="col">شرکت فناور</th>
-                        <th scope="col">ردیف تحویلی</th>
-                        <th scope="col">وضعیت</th>
-                        <th scope="col">توضیحات</th>
-                    </tr>
+                  <tr>
+                    <th data-sortable="true">id</th>
+                    <th data-sortable="true">Type</th>
+                    <th data-sortable="true">Firewall Vendor</th>
+                    <th data-sortable="true">Firewall Brand</th>
+                    <th data-sortable="true">Firewall Model</th>
+                    <th data-sortable="true">Firewall FW</th>
+                    <th data-sortable="true">Serial Number</th>
+                    <th data-sortable="true">Available/Delivery Action</th>
+                    <th data-sortable="true">Available Replace</th>
+                    <th data-sortable="true">Received Category</th>
+                    <th data-sortable="true">Received Fiber Port Num</th>
+                    <th data-sortable="true">Received Eth Port Num</th>
+                    <th data-sortable="true">Received Device Bog</th>
+                    <th data-sortable="true">Received/Delivery Person Name</th>
+                    <th data-sortable="true">Received/Delivery Person Number</th>
+                    <th data-sortable="true">Received Receive Person Name</th>
+                    <th data-sortable="true">Received Date</th>
+                    <th data-sortable="true">Received Send To Company Date</th>
+                    <th data-sortable="true">Received Company</th>
+                    <th data-sortable="true">Received/Delivery Status</th>
+                    <th data-sortable="true">Received/Delivery Description</th>
+                    <th data-sortable="true">Delivery Date</th>
+                    <th data-sortable="true">Delivery Category</th>
+                    <th data-sortable="true">Delivery To Category Date</th>
+                  </tr>
                 </thead>
                 <tbody>
-                    
-                    {% for obj in received_from_category %}
-                    <tr>
-                        <th scope="row" class="text-center">{{obj.id}}</th>
-                        <td>{{obj.fireWall.vendor}}</td>
-                        <td>{{obj.fireWall.brand}}</td>
-                        <td>{{obj.fireWall.model}}</td>
-                        <td>{{obj.fireWall.version}}</td>
-                        <td>{{obj.fireWall.sn}}</td>
-                        <td>{{obj.fibr_port_num}}</td>
-                        <td>{{obj.eth_port_num}}</td>
-                        <td>{{obj.device_bog}}</td>
-                        <td>{{obj.devilery_person_name}}</td>
-                        <td>{{obj.received_person_name}}</td>
-                        <td>{{obj.received_date}}</td>
-                        <td>{{obj.send_to_company_date}}</td>
-                        <td>{{obj.company}}</td>
-                        <td>{{obj.delivery_row}}</td>
-                        <td>{{obj.status}}</td>
-                        <td>{{obj.description}}</td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <th colspan="16">No obj yet.</td>
-                    </tr>
-                    {% endfor %}
+                {% for obj in res %}
+                  <tr style="direction: rtl;">
+                    <td>{{ obj.id }}</td>
+                    <td>{{ obj.type_ }}</td>
+                    <td>{{ obj.fireWall.vendor }}</td>
+                    <td>{{ obj.fireWall.brand }}</td>
+                    <td>{{ obj.fireWall.model }}</td>
+                    <td>{{ obj.fireWall.version }}</td>
+                    <td>{{ obj.fireWall.sn }}</td>
+                    <td>{{ obj.action }}</td>
+                    <td>{{ obj.replace }}</td>
+                    <td>{{ obj.fireWall.vendor }}</td>
+                    <td>{{ obj.fireWall.vendor }}</td>
+                    <td>{{ obj.fireWall.vendor }}</td>
+                    <td>{{ obj.fireWall.vendor }}</td>
+                  </tr>
+                {% empty %}
+                {% endfor %}
                 </tbody>
             </table>
         </div>
@@ -124,7 +101,11 @@
 <script src="{% static 'app/js/jquery-3.3.1.slim.min.js' %}"></script>
 <script src="{% static 'app/js/popper.min.js' %}"></script>
 <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'app/js/tableExport.min.js' %}"></script>
+<script src="{% static 'app/js/jspdf.min.js' %}"></script>
+<script src="{% static 'app/js/jspdf.plugin.autotable.js' %}"></script>
 <script src="{% static 'app/js/bootstrap-table.min.js' %}"></script>
+<script src="{% static 'app/js/bootstrap-table-export.min.js' %}"></script>
 <script src="{% static 'app/js/bootstrap-table-fa-IR.min.js' %}"></script>
 <script src="{% static 'app/js/main.js' %}"></script>
 </html>

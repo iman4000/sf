@@ -23,61 +23,28 @@ class IndexView(TemplateView):
 class SearchView(LoginRequiredMixin, TemplateView):
 
     def get(self, request):
-        filter_val = request.GET.get('filter', '')
-        if filter_val == '':
-            available = Available.objects.all().order_by('-created_date')
-            delivery_to_company = DeliveryToCompany.objects.all().order_by('-created_date')
-            delivery_to_category = DeliveryToCategory.objects.all().order_by('-created_date')
-            received_from_company = ReceivedFromCompany.objects.all().order_by('-created_date')
-            received_from_category = ReceivedFromCategory.objects.all().order_by('-created_date')
-        else:
-            available = Available.objects.filter(
-            Q(fireWall__vendor__icontains=filter_val) | Q(fireWall__brand__icontains=filter_val) | \
-            Q(fireWall__model__icontains=filter_val) | Q(fireWall__version__icontains=filter_val) | \
-            Q(fireWall__sn__icontains=filter_val) | Q(replace__icontains=filter_val) | \
-            Q(action__icontains=filter_val) |  Q(action__icontains=filter_val)
-            ).order_by('-created_date')
-            delivery_to_company = DeliveryToCompany.objects.filter(
-            Q(fireWall__vendor__icontains=filter_val) | Q(fireWall__brand__icontains=filter_val) | \
-            Q(fireWall__model__icontains=filter_val) | Q(fireWall__version__icontains=filter_val) | \
-            Q(fireWall__sn__icontains=filter_val) | Q(action__icontains=filter_val) | \
-            Q(name_phone__delivery_person__icontains=filter_val) | Q(name_phone__phone_number__icontains=filter_val) | \
-            Q(category__category__icontains=filter_val) | Q(status__status__icontains=filter_val) | \
-            Q(description__icontains=filter_val)
-            ).order_by('-created_date')
-            delivery_to_category = DeliveryToCategory.objects.filter(
-            Q(fireWall__vendor__icontains=filter_val) | Q(fireWall__brand__icontains=filter_val) | \
-            Q(fireWall__model__icontains=filter_val) | Q(fireWall__version__icontains=filter_val) | \
-            Q(fireWall__sn__icontains=filter_val) | Q(action__icontains=filter_val) | \
-            Q(name_phone__delivery_person__icontains=filter_val) | Q(name_phone__phone_number__icontains=filter_val) | \
-            Q(category__category__icontains=filter_val) | Q(status__status__icontains=filter_val) | \
-            Q(description__icontains=filter_val)
-            ).order_by('-created_date')
-            received_from_company = ReceivedFromCompany.objects.filter(
-            Q(category__category__icontains=filter_val) | Q(fireWall__sn__icontains=filter_val) | \
-            Q(fireWall__vendor__icontains=filter_val) | Q(fireWall__brand__icontains=filter_val) | \
-            Q(fireWall__model__icontains=filter_val) | Q(fireWall__version__icontains=filter_val) | \
-            Q(fibr_port_num__icontains=filter_val) |  Q(eth_port_num__icontains=filter_val) | \
-            Q(device_bog__device_bog__icontains=filter_val) | Q(devilery_person_name__delivery_person___icontains=filter_val) | \
-            Q(devilery_person_name__phone_number___icontains=filter_val) | Q(received_person_name__recieved_person___icontains=filter_val) | \
-            Q(company___icontains=filter_val) | Q(status__status___icontains=filter_val) | \
-            Q(description___icontains=filter_val)
-            ).order_by('-created_date')
-            received_from_category = ReceivedFromCategory.objects.filter(
-            Q(category__category__icontains=filter_val) | Q(fireWall__sn__icontains=filter_val) | \
-            Q(fireWall__vendor__icontains=filter_val) | Q(fireWall__brand__icontains=filter_val) | \
-            Q(fireWall__model__icontains=filter_val) | Q(fireWall__version__icontains=filter_val) | \
-            Q(fibr_port_num__icontains=filter_val) |  Q(eth_port_num__icontains=filter_val) | \
-            Q(device_bog__device_bog__icontains=filter_val) | Q(devilery_person_name__delivery_person___icontains=filter_val) | \
-            Q(devilery_person_name__phone_number___icontains=filter_val) | Q(received_person_name__recieved_person___icontains=filter_val) | \
-            Q(company___icontains=filter_val) | Q(status__status___icontains=filter_val) | \
-            Q(description___icontains=filter_val)
-            ).order_by('-created_date')
+        available = Available.objects.all().order_by('-created_date')
+        delivery_to_company = DeliveryToCompany.objects.all().order_by('-created_date')
+        delivery_to_category = DeliveryToCategory.objects.all().order_by('-created_date')
+        received_from_company = ReceivedFromCompany.objects.all().order_by('-created_date')
+        received_from_category = ReceivedFromCategory.objects.all().order_by('-created_date')
+        res = []
+        for obj in available:
+            obj.type_ = "available"
+            res.append(obj)
+        for obj in delivery_to_company:
+            obj.type_ = "delivery to company"
+            res.append(obj)
+        for obj in delivery_to_category:
+            obj.type_ = "delivery to category"
+            res.append(obj)
+        for obj in received_from_company:
+            obj.type_ = "received from company"
+            res.append(obj)
+        for obj in received_from_category:
+            obj.type_ = "received from category"
+            res.append(obj)
         data = {
-            'available': available,
-            'delivery_to_company': delivery_to_company, 
-            'delivery_to_category': delivery_to_category, 
-            'received_from_company': received_from_company, 
-            'received_from_category': received_from_category
+            'res': res,
             }
         return render(request, 'app/search.html', data)
