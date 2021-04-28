@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>available page</title>
+    <title>search page</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/bootstrap-table.min.css' %}">
@@ -40,7 +40,7 @@
             data-show-export="true"
             data-pagination="true"
             data-id-field="id"
-            data-page-list="[50, 100, 200, all]"
+            data-page-list="[10, 25, 50, 100, all]"
             >
                 <thead>
                   <tr>
@@ -87,7 +87,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for obj in object_list %}
+                    
+                    {% for obj in received_from_category %}
                     <tr>
                         <th scope="row" class="text-center">{{obj.id}}</th>
                         <td>{{obj.fireWall.vendor}}</td>
@@ -115,6 +116,7 @@
                 </tbody>
             </table>
         </div>
+        
     </div>
 
 </body>
