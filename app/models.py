@@ -97,7 +97,7 @@ class Delivery(models.Model):
     fireWall = models.ForeignKey('FireWall',on_delete=models.CASCADE,null=True,blank=True)
     action = models.CharField(max_length=300)
     date = models.DateTimeField(null=True, blank=True)
-    name_phone = models.ForeignKey('DeliveryPerson',on_delete=models.CASCADE,null=True,blank=True)
+    devilery_person_name = models.ForeignKey('DeliveryPerson',on_delete=models.CASCADE,null=True,blank=True)
     delivery_to_category_date = models.DateTimeField(null=True, blank=True)
     category = models.ForeignKey('Category',on_delete=models.CASCADE,null=True,blank=True)
     status = models.ForeignKey('Status',on_delete=models.CASCADE,null=True,blank=True)

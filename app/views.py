@@ -30,19 +30,27 @@ class SearchView(LoginRequiredMixin, TemplateView):
         received_from_category = ReceivedFromCategory.objects.all().order_by('-created_date')
         res = []
         for obj in available:
-            obj.type_ = "available"
+            obj.type_ = "A"
             res.append(obj)
         for obj in delivery_to_company:
-            obj.type_ = "delivery to company"
+            obj.type_ = "DTCo"
+            obj.delivery_to_category_date = JalaliDateTime(obj.delivery_to_category_date).strftime("%Y-%m-%d %H-%M")
+            obj.date = JalaliDateTime(obj.date).strftime("%Y-%m-%d %H-%M")
             res.append(obj)
         for obj in delivery_to_category:
-            obj.type_ = "delivery to category"
+            obj.type_ = "DTCa"
+            obj.delivery_to_category_date = JalaliDateTime(obj.delivery_to_category_date).strftime("%Y-%m-%d %H-%M")
+            obj.date = JalaliDateTime(obj.date).strftime("%Y-%m-%d %H-%M")
             res.append(obj)
         for obj in received_from_company:
-            obj.type_ = "received from company"
+            obj.type_ = "RFCo"
+            obj.received_date = JalaliDateTime(obj.received_date).strftime("%Y-%m-%d %H-%M")
+            obj.send_to_company_date = JalaliDateTime(obj.send_to_company_date).strftime("%Y-%m-%d %H-%M")
             res.append(obj)
         for obj in received_from_category:
-            obj.type_ = "received from category"
+            obj.type_ = "RFCa"
+            obj.received_date = JalaliDateTime(obj.received_date).strftime("%Y-%m-%d %H-%M")
+            obj.send_to_company_date = JalaliDateTime(obj.send_to_company_date).strftime("%Y-%m-%d %H-%M")
             res.append(obj)
         data = {
             'res': res,
