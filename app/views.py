@@ -7,7 +7,7 @@ from persiantools.jdatetime import JalaliDateTime
 from .models import Available, DeliveryToCompany, DeliveryToCategory, ReceivedFromCategory, ReceivedFromCompany
 
 
-class IndexView(TemplateView):
+class IndexView(LoginRequiredMixin, TemplateView):
 
     def get(self, request):
         context = {
