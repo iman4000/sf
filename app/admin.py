@@ -1,5 +1,7 @@
 from django.contrib import admin
 from . import models
+from jalali_date.admin import ModelAdminJalaliMixin
+
 
 @admin.register(models.Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -10,23 +12,23 @@ class FireWallAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(models.Available)
-class AvailableAdmin(admin.ModelAdmin):
+class AvailableAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     pass
 
 @admin.register(models.DeliveryToCategory)
-class DeliveryToCategoryAdmin(admin.ModelAdmin):
+class DeliveryToCategoryAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     pass
 
 @admin.register(models.DeliveryToCompany)
-class DeliveryToCompanyAdmin(admin.ModelAdmin):
+class DeliveryToCompanyAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     pass
 
 @admin.register(models.ReceivedFromCategory)
-class ReceivedFromCategoryAdmin(admin.ModelAdmin):
+class ReceivedFromCategoryAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     pass
 
 @admin.register(models.ReceivedFromCompany)
-class ReceivedFromCompany(admin.ModelAdmin):
+class ReceivedFromCompanyAdmin(ModelAdminJalaliMixin, admin.ModelAdmin):
     pass
 
 @admin.register(models.Status)

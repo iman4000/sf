@@ -13,15 +13,14 @@ This project is for managing firewalls
 
 ## TODO list
 
-1. [X] export
-2. [X] navare keshoii baraye category
-3. [X] remove all default='SOME STRING' from models
-4. [X] remove delivery row from recived 
-5. [X] add sn to str firewall 
-6. [X] add phone number to delivery person
-7. [X] change date times auto to manual 
-8. [X] same as 7
-9. [X] search on 5 models
-10. [X] sort on frontend js
-11. [X] change "reciverd" to "recived from company" and "recived from category", "delivery" to "delivery from company" and "delivery from category"
-12. [X] factory
+1. [X] date picker persian admin
+2. [X] admin time picker by time
+3. [ ] company change to class
+4. [ ] description not required
+5. [ ] show tables like Recived From Company, Delivery To Category, Recive From Company, Delivery To Category
+6. [ ] delete delivery person name from Recived From Company
+7. [ ] add Company person to Recive/Deliver From/To Company
+9. [ ] delete deliver to company date from deliver to company
+10. [ ] datetime match to +3:30 in view 
+11. [ ] check for app logic and fix it
+12. [ ] setting update
