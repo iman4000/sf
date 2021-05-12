@@ -19,12 +19,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 
-from app.views import SearchView, IndexView
+from app.views import SearchView, IndexView, AvailableListView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', IndexView.as_view(), name='home'),
+    path('available/', AvailableListView.as_view(), name='available'),
     path('search/', SearchView.as_view(), name="search"),
     re_path(r'^$', IndexView.as_view(), name='home'),
     re_path(r'^accounts/', include('accounts.urls')),
