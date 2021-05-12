@@ -1,27 +1,39 @@
 # Firewall listing project
+
 This project is for managing firewalls
 
-## Installation 
+## Installation
 
 1. make a virtual environment with python3 (e.g. python 3.6.9)
-2. enable virtual environment 
+2. enable virtual environment
 3. execute `pip install -r requirements.txt`
 4. copy firewall/settings.py.sample to settings.py and configure new setting file
 5. make migrate with `python3 manage.py migrate`
 6. create a super user by `python3 manage.py createsuperuser`
-7. runserver `python3 manage.py runserver`
+7. run server `python3 manage.py runserver`
 
 ## TODO list
 
-1. [X] export
-2. [X] navare keshoii baraye category
-3. [X] remove all default='SOME STRING' from models
-4. [X] remove delivery row from recived 
-5. [X] add sn to str firewall 
-6. [X] add phone number to delivery person
-7. [X] change date times auto to manual 
-8. [X] same as 7
-9. [X] search on 5 models
-10. [X] sort on frontend js
-11. [X] change "reciverd" to "recived from company" and "recived from category", "delivery" to "delivery from company" and "delivery from category"
-12. [X] factory
+1. [!] start.sh
+2. [X] date picker persian admin
+3. [X] admin time picker by time
+4. [X] company change to class
+5. [!] popup
+6. [X] description not required
+7. [X] delete delivery person name from Recived From Company
+8. some changes to models:
+   1. [X] delete category from delivery to company
+   2. [X] add company to delivery to comany
+   3. [X] delete delivery person name from delivery to company
+   4. [X] add company person to delivery to company
+9. [X] add Company person to Recived from Company
+10. [X] show tables like Recived From Company, Delivery To Category, Recive From Company, Delivery To Category
+11. [X] delete deliver to company date from deliver to company
+12. [X] check for app logic and fix it
+13. need to do:
+    1. [X] delete replace from available 
+    2. [X] datetime match to +3:30 in view
+    3. [X] setting update
+    4. [!] search by serial number
+    5. [!] factory
+    6. [X] view update, template update

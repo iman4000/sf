@@ -20,6 +20,7 @@
         <div class="collapse navbar-collapse px-2" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{% url 'home' %}">خانه</a>
+                <a class="nav-item nav-link" href="{% url 'available' %}">موجودی</a>
                 <a class="nav-item nav-link" href="{% url 'search' %}">جست‌و‌جو</a>
             </div>
         </div>
@@ -46,56 +47,26 @@
                 <thead class="thead-light text-center">
                   <tr>
                     <th data-sortable="true">id</th>
-                    <th data-sortable="true">Type</th>
+                    <th data-sortable="true">Action</th>
                     <th data-sortable="true">Firewall Vendor</th>
                     <th data-sortable="true">Firewall Brand</th>
                     <th data-sortable="true">Firewall Model</th>
-                    <th data-sortable="true">Firewall FW</th>
-                    <th data-sortable="true">Serial Number</th>
-                    <th data-sortable="true">Available/Delivery Action</th>
-                    <th data-sortable="true">Available Replace</th>
-                    <th data-sortable="true">Received/Delivery Category</th>
-                    <th data-sortable="true">Received Fiber Port Num</th>
-                    <th data-sortable="true">Received Eth Port Num</th>
-                    <th data-sortable="true">Received Device Bog</th>
-                    <th data-sortable="true">Delivery Person Name</th>
-                    <th data-sortable="true">Delivery Person Number</th>
-                    <th data-sortable="true">Receive Person Name</th>
-                    <th data-sortable="true">Received Date</th>
-                    <th data-sortable="true">Received Send To Company Date</th>
-                    <th data-sortable="true">Received Company</th>
-                    <th data-sortable="true">Received/Delivery Status</th>
-                    <th data-sortable="true">Received/Delivery Description</th>
-                    <th data-sortable="true">Delivery Date</th>
-                    <th data-sortable="true">Delivery To Category Date</th>
+                    <th data-sortable="true">Firewall Version</th>
+                    <th data-sortable="true">Firewall Serial Number</th>
+                    <th data-sortable="true">Created Date</th>
                   </tr>
                 </thead>
                 <tbody>
-                {% for obj in res %}
+                {% for obj in object_list  %}
                   <tr style="direction: rtl;">
                     <td class="text-nowrap">{{ obj.id }}</td>
-                    <td class="text-nowrap">{{ obj.type_ }}</td>
-                    <td class="text-nowrap">{{ obj.fireWall.vendor }}</td>
-                    <td class="text-nowrap">{{ obj.fireWall.brand }}</td>
-                    <td class="text-nowrap">{{ obj.fireWall.model }}</td>
-                    <td class="text-nowrap">{{ obj.fireWall.version }}</td>
-                    <td class="text-nowrap">{{ obj.fireWall.sn }}</td>
                     <td class="text-nowrap">{{ obj.action }}</td>
-                    <td class="text-nowrap">{{ obj.replace }}</td>
-                    <td class="text-nowrap">{{ obj.category.category }}</td>
-                    <td class="text-nowrap">{{ obj.fibr_port_num }}</td>
-                    <td class="text-nowrap">{{ obj.eth_port_num }}</td>
-                    <td class="text-nowrap">{{ obj.device_bog.device_bog }}</td>
-                    <td class="text-nowrap">{{ obj.devilery_person_name.delivery_person }}</td>
-                    <td class="text-nowrap">{{ obj.devilery_person_name.phone_number }}</td>
-                    <td class="text-nowrap">{{ obj.received_person_name.recieved_person }}</td>
-                    <td class="text-nowrap" style="direction: ltr;">{{ obj.received_date }}</td>
-                    <td class="text-nowrap" style="direction: ltr;">{{ obj.send_to_company_date }}</td>
-                    <td class="text-nowrap">{{ obj.company }}</td>
-                    <td class="text-nowrap">{{ obj.status }}</td>
-                    <td class="text-nowrap">{{ obj.description }}</td>
-                    <td class="text-nowrap" style="direction: ltr;">{{ obj.date }}</td>
-                    <td class="text-nowrap" style="direction: ltr;">{{ obj.delivery_to_category_date }}</td>
+                    <td class="text-nowrap">{{ obj.firewall.vendor }}</td>
+                    <td class="text-nowrap">{{ obj.firewall.brand }}</td>
+                    <td class="text-nowrap">{{ obj.firewall.model }}</td>
+                    <td class="text-nowrap">{{ obj.firewall.version }}</td>
+                    <td class="text-nowrap">{{ obj.firewall.sn }}</td>
+                    <td class="text-nowrap">{{ obj.created_date }}</td>
                   </tr>
                 {% empty %}
 
