@@ -83,6 +83,21 @@ class CompanyPerson(Person):
     company = models.ForeignKey('Company', on_delete=models.PROTECT, null=True, blank=True)
 
 
+class CategoryPerson(Person):
+    name = models.CharField(max_length=200)
+    phone_regex = RegexValidator(
+        regex = r'^09\d{9}$',
+        message = "Phone number must be entered in the format: '09XXXXXXXXX'. \"09\" than 9 digit digits allowed."
+    )
+    phone_number = models.CharField(
+        validators = [phone_regex],
+        max_length = 11, 
+        null = False, 
+        blank = False
+    )
+    category = models.ForeignKey('Category', on_delete=models.PROTECT, null=True, blank=True)
+
+
 class Firewall(models.Model):
     vendor = models.CharField(max_length=300)
     brand = models.CharField(max_length=300)
@@ -117,6 +132,7 @@ class ReceivedFromCategory(models.Model):
     firewall = models.ForeignKey('Firewall', on_delete=models.PROTECT, null=False, blank=False)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True)
     device_problem = models.ForeignKey('DeviceProblem', on_delete=models.SET_NULL, null=True, blank=True)
+    category_person = models.ForeignKey('CategoryPerson', on_delete=models.SET_NULL, null=True, blank=True)
     received_person = models.ForeignKey('Staff', on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateTimeField(null=True, blank=True)
     status = models.ForeignKey('Status', on_delete=models.SET_NULL, null=True, blank=True)
@@ -160,6 +176,7 @@ class DeliveryToCategory(models.Model):
     action = models.CharField(max_length=300)
     date = models.DateTimeField(null=True, blank=True)
     delivery_person = models.ForeignKey('Staff', on_delete=models.SET_NULL, null=True, blank=True)
+    category_person = models.ForeignKey('CategoryPerson', on_delete=models.SET_NULL, null=True, blank=True)
     category = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True, blank=True)
     status = models.ForeignKey('Status', on_delete=models.SET_NULL, null=True, blank=True)
     description = models.TextField(blank=True)

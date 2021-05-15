@@ -229,6 +229,18 @@ class CompanyPersonAdmin(admin.ModelAdmin):
         )
 
 
+@admin.register(models.CategoryPerson)
+class CategoryPersonAdmin(admin.ModelAdmin):
+    list_display_links = (
+        'name',
+        )
+    list_display = (
+        'id',
+        'name',
+        'phone_number',
+        )
+
+
 @admin.register(models.Staff)
 class StaffAdmin(admin.ModelAdmin):
     list_display_links = (
