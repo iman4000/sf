@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>موجودی</title>
+    <title>تحویلی به رده</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/bootstrap-table.min.css' %}">
@@ -48,29 +48,48 @@
             data-export-types="['json', 'csv', 'txt', 'excel', 'pdf']"
             data-page-list="[10, 25, 50, 100, all]"
             >
-                <thead class="thead-light text-center">
+                <thead class="thead-light">
                   <tr>
-                    <th data-sortable="true">id</th>
-                    <th data-sortable="true">Action</th>
-                    <th data-sortable="true">Firewall Vendor</th>
-                    <th data-sortable="true">Firewall Brand</th>
-                    <th data-sortable="true">Firewall Model</th>
-                    <th data-sortable="true">Firewall Version</th>
-                    <th data-sortable="true">Firewall Serial Number</th>
-                    <th data-sortable="true">Created Date</th>
+                    <th data-sortable="true" class="text-nowrap text-center">ID</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Firewall Vendor</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Firewall Brand</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Firewall Model</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Firewall FW</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Firewall Serial Number</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Firewall Fiber Port Number</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Firewall Ethernet Port Number</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Action</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Date</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Delivery Person Name</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Delivery Person Phone</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Category Person Name</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Category Person Phone</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Category</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Status</th>
+                    <th data-sortable="true" class="text-nowrap text-center">Description</th>
+
                   </tr>
                 </thead>
                 <tbody>
-                {% for obj in object_list  %}
+                {% for obj in object_list %}
                   <tr style="direction: rtl;">
                     <td class="text-nowrap">{{ obj.id }}</td>
-                    <td class="text-nowrap">{{ obj.action }}</td>
                     <td class="text-nowrap">{{ obj.firewall.vendor }}</td>
                     <td class="text-nowrap">{{ obj.firewall.brand }}</td>
                     <td class="text-nowrap">{{ obj.firewall.model }}</td>
                     <td class="text-nowrap">{{ obj.firewall.version }}</td>
                     <td class="text-nowrap">{{ obj.firewall.sn }}</td>
-                    <td class="text-nowrap">{{ obj.created_date }}</td>
+                    <td class="text-nowrap">{{ obj.firewall.fiber_port_num }}</td>
+                    <td class="text-nowrap">{{ obj.firewall.eth_port_num }}</td>
+                    <td class="text-nowrap">{{ obj.action }}</td>
+                    <td class="text-nowrap">{{ obj.date }}</td>
+                    <td class="text-nowrap">{{ obj.delivery_person.name }}</td>
+                    <td class="text-nowrap">{{ obj.delivery_person.phone_number }}</td>
+                    <td class="text-nowrap">{{ obj.category_person.name }}</td>
+                    <td class="text-nowrap">{{ obj.category_person.phone_number }}</td>
+                    <td class="text-nowrap">{{ obj.category }}</td>
+                    <td class="text-nowrap">{{ obj.status }}</td>
+                    <td>{{ obj.description }}</td>
                   </tr>
                 {% empty %}
 
@@ -86,7 +105,7 @@
 <script src="{% static 'app/js/jquery-3.3.1.slim.min.js' %}"></script>
 <script src="{% static 'app/js/popper.min.js' %}"></script>
 <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'app/js/tableExport.js' %}"></script>
+<script src="{% static 'app/js/tableExport.js' %}"></script>\
 <script src="{% static 'app/js/jspdf.min.js' %}"></script>
 <script src="{% static 'app/js/jspdf.plugin.autotable.js' %}"></script>
 <script src="{% static 'app/js/FileSaver.min.js' %}"></script>

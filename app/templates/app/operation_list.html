@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>search page</title>
+    <title>گردش</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'app/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/bootstrap-table.min.css' %}">
@@ -19,9 +19,13 @@
         </button>
         <div class="collapse navbar-collapse px-2" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" href="{% url 'home' %}">خانه</a>
-                <a class="nav-item nav-link" href="{% url 'available' %}">موجودی</a>
-                <a class="nav-item nav-link" href="{% url 'search' %}">جست‌و‌جو</a>
+                <a class="nav-item nav-link mx-2 {% if request.resolver_match.url_name == "home" %}active{% endif %}" href="{% url 'home' %}">خانه</a>
+                <a class="nav-item nav-link mx-2 {% if request.resolver_match.url_name == "search" %}active{% endif %}" href="{% url 'search' %}">گردش</a>
+                <a class="nav-item nav-link mx-2 {% if request.resolver_match.url_name == "available" %}active{% endif %}" href="{% url 'available' %}">موجودی</a>
+                <a class="nav-item nav-link mx-2 {% if request.resolver_match.url_name == "rfca" %}active{% endif %}" href="{% url 'rfca' %}">دریافتی از رده</a>
+                <a class="nav-item nav-link mx-2 {% if request.resolver_match.url_name == "dtco" %}active{% endif %}" href="{% url 'dtco' %}">تحویلی به شرکت</a>
+                <a class="nav-item nav-link mx-2 {% if request.resolver_match.url_name == "rfco" %}active{% endif %}" href="{% url 'rfco' %}">دریافتی از شرکت</a>
+                <a class="nav-item nav-link mx-2 {% if request.resolver_match.url_name == "dtca" %}active{% endif %}" href="{% url 'dtca' %}">تحویلی به رده</a>
             </div>
         </div>
         <div class="form-inline">
@@ -41,7 +45,7 @@
             data-toggle="table"
             data-export-data-type="all"
             data-pagination="true"
-            data-export-types="['json', 'csv', 'txt', 'excel']"
+            data-export-types="['json', 'csv', 'txt', 'excel', 'pdf']"
             data-page-list="[10, 25, 50, 100, all]"
             >
                 <thead class="thead-light">
@@ -62,6 +66,8 @@
                     <th data-sortable="true" class="text-nowrap text-center">RFCa Device Problem</th>
                     <th data-sortable="true" class="text-nowrap text-center">RFCa Received Person Name</th>
                     <th data-sortable="true" class="text-nowrap text-center">RFCa Received Person Phone</th>
+                    <th data-sortable="true" class="text-nowrap text-center">RFCa Category Person Name</th>
+                    <th data-sortable="true" class="text-nowrap text-center">RFCa Category Person Phone</th>
                     <th data-sortable="true" class="text-nowrap text-center">RFCa Date</th>
                     <th data-sortable="true" class="text-nowrap text-center">RFCa Status</th>
                     <th data-sortable="true" class="text-nowrap text-center">RFCa Description</th>
@@ -95,6 +101,8 @@
                     <th data-sortable="true" class="text-nowrap text-center">DTCa Date</th>
                     <th data-sortable="true" class="text-nowrap text-center">DTCa Delivery Person Name</th>
                     <th data-sortable="true" class="text-nowrap text-center">DTCa Delivery Person Phone</th>
+                    <th data-sortable="true" class="text-nowrap text-center">DTCa Category Person Name</th>
+                    <th data-sortable="true" class="text-nowrap text-center">DTCa Category Person Phone</th>
                     <th data-sortable="true" class="text-nowrap text-center">DTCa Category</th>
                     <th data-sortable="true" class="text-nowrap text-center">DTCa Status</th>
                     <th data-sortable="true" class="text-nowrap text-center">DTCa Description</th>
@@ -137,6 +145,8 @@
                     <td class="text-nowrap">{{ obj.received_from_category.device_problem.name }}</td>
                     <td class="text-nowrap">{{ obj.received_from_category.received_person.name }}</td>
                     <td class="text-nowrap">{{ obj.received_from_category.received_person.phone_number }}</td>
+                    <td class="text-nowrap">{{ obj.received_from_category.category_person.name }}</td>
+                    <td class="text-nowrap">{{ obj.received_from_category.category_person.phone_number }}</td>
                     <td class="text-nowrap">{{ obj.received_from_category.date }}</td>
                     <td class="text-nowrap">{{ obj.received_from_category.status }}</td>
                     <td>{{ obj.received_from_category.description }}</td>
@@ -153,7 +163,7 @@
                             <input class="form-check-input position-static" type="checkbox" id="blankCheckbox_firewall_change_status{{obj.id}}" {% if obj.firewall_change_status == True %} checked="checked" {% endif %} onclick="return false;">
                         </div>
                     </td>
-                    <td>{{ obj.received_from_company.change_description }}</td>
+                    <td>{{ obj.received_from_company.firewall_changes.change_description }}</td>
                     <td class="text-nowrap">{{ obj.new_firewall.vendor }}</td>
                     <td class="text-nowrap">{{ obj.new_firewall.brand }}</td>
                     <td class="text-nowrap">{{ obj.new_firewall.model }}</td>
@@ -162,7 +172,7 @@
                     <td class="text-nowrap">{{ obj.new_firewall.fiber_port_num }}</td>
                     <td class="text-nowrap">{{ obj.new_firewall.eth_port_num }}</td>
                     <td class="text-nowrap">{{ obj.received_from_company.company }}</td>
-                    <td class="text-nowrap">{{ obj.received_from_company.fiber_port_num }}</td>
+                    <td class="text-nowrap">{{ obj.received_from_company.device_problem.name }}</td>
                     <td class="text-nowrap">{{ obj.received_from_company.company_person.name }}</td>
                     <td class="text-nowrap">{{ obj.received_from_company.company_person.phone_number }}</td>
                     <td class="text-nowrap">{{ obj.received_from_company.received_person.name }}</td>
@@ -174,6 +184,8 @@
                     <td class="text-nowrap">{{ obj.delivery_to_category.date }}</td>
                     <td class="text-nowrap">{{ obj.delivery_to_category.delivery_person.name }}</td>
                     <td class="text-nowrap">{{ obj.delivery_to_category.delivery_person.phone_number }}</td>
+                    <td class="text-nowrap">{{ obj.delivery_to_category.category_person.name }}</td>
+                    <td class="text-nowrap">{{ obj.delivery_to_category.category_person.phone_number }}</td>
                     <td class="text-nowrap">{{ obj.delivery_to_category.category }}</td>
                     <td class="text-nowrap">{{ obj.delivery_to_category.status }}</td>
                     <td>{{ obj.delivery_to_category.description }}</td>
@@ -192,9 +204,13 @@
 <script src="{% static 'app/js/jquery-3.3.1.slim.min.js' %}"></script>
 <script src="{% static 'app/js/popper.min.js' %}"></script>
 <script src="{% static 'app/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'app/js/tableExport.min.js' %}"></script>
+<script src="{% static 'app/js/tableExport.js' %}"></script>\
 <script src="{% static 'app/js/jspdf.min.js' %}"></script>
 <script src="{% static 'app/js/jspdf.plugin.autotable.js' %}"></script>
+<script src="{% static 'app/js/FileSaver.min.js' %}"></script>
+<script src="{% static 'app/js/pdfmake.min.js' %}"></script>
+<script src="{% static 'app/js/vfs_fonts.js' %}"></script>
+<script src="{% static 'app/js/mirza_fonts.js' %}"></script>
 <script src="{% static 'app/js/bootstrap-table.min.js' %}"></script>
 <script src="{% static 'app/js/bootstrap-table-export.min.js' %}"></script>
 <script src="{% static 'app/js/bootstrap-table-fa-IR.min.js' %}"></script>

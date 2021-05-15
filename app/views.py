@@ -5,7 +5,8 @@ from django.views.generic import TemplateView, ListView
 
 from jalali_date import datetime2jalali
 
-from .models import Available, Operation
+from .models import Available, Operation, ReceivedFromCategory,\
+    ReceivedFromCompany, DeliveryToCategory , DeliveryToCompany
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -15,9 +16,9 @@ class IndexView(LoginRequiredMixin, TemplateView):
             'count_available': Available.objects.count(), 
             'count_operation': Operation.objects.count(), 
             'count_received_from_category': ReceivedFromCategory.objects.count(), 
+            'count_delivery_to_company': DeliveryToCompany.objects.count(), 
             'count_received_from_company': ReceivedFromCompany.objects.count(), 
-            'count_received_from_category': DeliveryToCategory.objects.count(), 
-            'count_received_from_company': DeliveryToCompany.objects.count(), 
+            'count_delivery_to_category': DeliveryToCategory.objects.count(), 
             }
         return render(request, 'app/index.html', context)
 
@@ -35,6 +36,58 @@ class AvailableListView(LoginRequiredMixin, ListView):
         return context
 
 
+class ReceivedFromCategoryListView(LoginRequiredMixin, ListView):
+    model = ReceivedFromCategory
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['object_list'] = ReceivedFromCategory.objects.all().order_by('-date')
+        for item in context['object_list']:
+            item.date = datetime2jalali(item.date).strftime('%Y/%m/%d-%H:%M')
+        return context
+
+
+class DeliveryToCompanyListView(LoginRequiredMixin, ListView):
+    model = DeliveryToCompany
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['object_list'] = DeliveryToCompany.objects.all().order_by('-date')
+        for item in context['object_list']:
+            item.date = datetime2jalali(item.date).strftime('%Y/%m/%d-%H:%M')
+        return context
+
+
+class ReceivedFromCompanyListView(LoginRequiredMixin, ListView):
+    model = ReceivedFromCompany
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['object_list'] = ReceivedFromCompany.objects.all().order_by('-date')
+        for item in context['object_list']:
+            item.date = datetime2jalali(item.date).strftime('%Y/%m/%d-%H:%M')
+        return context
+
+
+class DeliveryToCategoryListView(LoginRequiredMixin, ListView):
+    model = DeliveryToCategory
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['object_list'] = DeliveryToCategory.objects.all().order_by('-date')
+        for item in context['object_list']:
+            item.date = datetime2jalali(item.date).strftime('%Y/%m/%d-%H:%M')
+        return context
+
+
 class SearchView(LoginRequiredMixin, ListView):
     model = Operation
 
@@ -46,7 +99,7 @@ class SearchView(LoginRequiredMixin, ListView):
         
         for item in context['object_list']:
             
-            if item.received_from_category:
+            if item.received_from_category is not None:
                 # check for received_from_category
                 item.received_from_category_status = True
                 # Make dates jalali
@@ -59,15 +112,21 @@ class SearchView(LoginRequiredMixin, ListView):
             else:
                 # check for received_from_category
                 item.received_from_category_status = False
-            if item.delivery_to_company:
+            if item.delivery_to_company is not None:
                 # check for delivery_to_company
                 item.delivery_to_company_status = True
                 # Make dates jalali
                 item.delivery_to_company.date = datetime2jalali(item.delivery_to_company.date).strftime('%Y/%m/%d-%H:%M')
+                # Find firewall
+                if item.firewall is None:
+                    try:
+                        item.firewall = item.delivery_to_company.firewall
+                    except:
+                        pass
             else:
                 # check for delivery_to_company
                 item.delivery_to_company_status = False
-            if item.received_from_company:
+            if item.received_from_company is not None:
                 # check for received_from_company
                 item.received_from_company_status = True
                 # Make dates jalali
@@ -81,7 +140,9 @@ class SearchView(LoginRequiredMixin, ListView):
             else:
                 # check for received_from_company
                 item.received_from_company_status = False
-            if item.delivery_to_category:
+                # make a new firewall
+                item.new_firewall = None
+            if item.delivery_to_category is not None:
                 # check for delivery_to_category
                 item.delivery_to_category_status = True
                 # Make dates jalali

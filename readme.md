@@ -14,26 +14,8 @@ This project is for managing firewalls
 
 ## TODO list
 
-1. [!] start.sh
-2. [X] date picker persian admin
-3. [X] admin time picker by time
-4. [X] company change to class
-5. [!] popup
-6. [X] description not required
-7. [X] delete delivery person name from Recived From Company
-8. some changes to models:
-   1. [X] delete category from delivery to company
-   2. [X] add company to delivery to comany
-   3. [X] delete delivery person name from delivery to company
-   4. [X] add company person to delivery to company
-9. [X] add Company person to Recived from Company
-10. [X] show tables like Recived From Company, Delivery To Category, Recive From Company, Delivery To Category
-11. [X] delete deliver to company date from deliver to company
-12. [X] check for app logic and fix it
-13. need to do:
-    1. [X] delete replace from available 
-    2. [X] datetime match to +3:30 in view
-    3. [X] setting update
-    4. [!] search by serial number
-    5. [!] factory
-    6. [X] view update, template update
+1. [X] Category person add
+2. [X] export by RFCa, DTCo, RFCo, DTCa
+3. [X] export html and pdf
+4. [X] index link to exports
+5. [X] error handeling
