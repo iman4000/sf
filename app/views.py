@@ -112,6 +112,8 @@ class SearchView(LoginRequiredMixin, ListView):
             else:
                 # check for received_from_category
                 item.received_from_category_status = False
+                # set firewall to None
+                item.firewall = None
             if item.delivery_to_company is not None:
                 # check for delivery_to_company
                 item.delivery_to_company_status = True
@@ -151,7 +153,9 @@ class SearchView(LoginRequiredMixin, ListView):
                 # check for delivery_to_category
                 item.delivery_to_category_status = False
             # check for firewall changes
-            if item.firewall != item.new_firewall:
+            if item.new_firewall is not None and\
+                item.firewall is not None and\
+                item.firewall != item.new_firewall:
                 item.firewall_change_status = True
             else:
                 item.firewall_change_status = False
