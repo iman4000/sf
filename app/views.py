@@ -156,3 +156,6 @@ class SearchView(LoginRequiredMixin, ListView):
             else:
                 item.firewall_change_status = False
         return context
+
+
+class IndexView(LoginRequiredMixin, TemplateView):
