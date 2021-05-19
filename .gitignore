@@ -89,3 +89,10 @@ local_settings.py
 .env
 *.sqlite3
 config.py
+
+#VSCODE
+.vscode/
+
+#Backups/Restore
+backups/
+restore/

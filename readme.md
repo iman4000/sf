@@ -12,10 +12,15 @@ This project is for managing firewalls
 6. create a super user by `python3 manage.py createsuperuser`
 7. run server `python3 manage.py runserver`
 
-## TODO list
+## Backup/Restore
 
-1. [X] Category person add
-2. [X] export by RFCa, DTCo, RFCo, DTCa
-3. [X] export html and pdf
-4. [X] index link to exports
-5. [X] error handeling
+### Backup
+
+1. enable virtual environment
+2. execute backup.py in root directory `python backup.py`
+3. backup will save is **/backups** folder
+
+### Restore
+
+1. enable virtual environment
+2. execute restore.py followed by file name in root directory `python restore.py BACKUPFILE`
