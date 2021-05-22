@@ -12,3 +12,4 @@ django-jalali-date==0.3.*
 jdatetime==3.6.*
 six==1.16.*
 sqlparse==0.4.*
+xlwt==1.3.*
