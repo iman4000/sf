@@ -87,6 +87,7 @@ local_settings.py
 */settings.py
 
 .env
+.venv
 *.sqlite3
 config.py
 

@@ -166,7 +166,7 @@ class SearchView(LoginRequiredMixin, ListView):
         return context
 
 
-class ExportView(TemplateView):
+class ExportView(LoginRequiredMixin, TemplateView):
 
     def get(self, request, *args, **kwargs):
         response = HttpResponse(content_type='application/ms-excel')
